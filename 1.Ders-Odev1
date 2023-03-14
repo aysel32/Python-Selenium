@@ -1,0 +1,25 @@
+print("1.Gün - Ödev 1")
+print("*****************Python'da Veri Tipleri********************")
+print("=> String \n=> integer \n=> Float \n=> Boolean \n=> Liste",)
+print("*****************String*********************")
+print("String => Metinsel veri tipidir. \n- Tek tırnak ya da çift tırnak içine yazılan değerler string tir. \n- Matematiksel işlem yapılamaz")
+isim="Aysel" #=> string veri tipi
+print("İsmim : ",isim)
+print("\n*****************integer*********************")
+print("integer =>Numaric veri tipidir \n -Pozitif veya negatif sınırsız uzunlukta tam sayıları tutar \n- Tırnak içine yazılmaz \n- Matematiksel işlemler yapılır")
+dersSuresi = 3 #=>integer veri tipi
+print("Python - Selenium ders süresi :",dersSuresi,"saattir")
+print("\n*****************Float*********************")
+print("Float => Numaric veri tipidir \n- Pozitif veya negatif ondalık sayıları tutar \n- Tırnak içinde yazılmaz")
+dersSaati = 21.05 #=> Float veri tipi
+print("Python - Selenium dersi saati:",dersSaati, "Derse zamanında giriniz!")
+print("\n*****************Boolean*********************")
+print("Boolean =>Karar yapılarında kullanılan veri tipidir \n- True ya da False değeri döndürür \n- Doğru veya yanlış - Evet veya Hayır değeri döndüren karar yapılarında kullanırız")
+dersVerimlimi = True #=> Bool veri tipi
+print("Python - Selenıum dersi verimli mi ilerliyor:",dersVerimlimi,"kesinlikle!")
+print("\n*****************Liste*********************")
+print("Listeler => Köşeli parantez içine yazılıp virgülle birbirinden ayrılan değerler kümesidir \n Değerler tırnak içine yazılır ve tırnaktan sonra virgülle birbirinden ayrılır \nlistedeki öğeler aynı veri türünde olması gerekmez")
+pythonda4VeriTipi = ['string','integer','float','bool',4]
+print(pythonda4VeriTipi)
+print(type(pythonda4VeriTipi))
+print("\n\n*************1.Gün - 1.Ödevin İlk isteneni yapılmıştır. Çalışmalarımız itinayla devam etmektedir**************")
