@@ -1,0 +1,27 @@
+print("**********Kodlama.io Anasayfa da şart blokları***************")
+print("\n Kurs bul arama kutusunda eğer kullanıcı java yazarsa ekran çıktısı java kursları gelir \n Sistemde kayıtlı olmayan bir kurs yazarsa kullanıcıya else komutuyla uyarı mesajı verilir ")
+kursBul = input("kurs ara : ")
+kurs = "java"
+if kursBul == kurs:
+    print("(2022) Yazılım Geliştirici Yetiştirme Kampı - JAVA \nYazılım Geliştirici Yetiştirme Kampı (JavaScript) \nYazılım Geliştirici Yetiştirme Kampı(JAVA-REACT")
+else:
+    print("Aradığınız kurs bulunamadı")
+print("\n*************************************")    
+print("Kodlama.io sisteme giriş kısmıda girilen mail ve şifrenin sistemde kayıtlı olup olmadığı sorgusuyla kontrol edilir. Kayıtlı olduğu kararı True dönerse giriş başarılı olur")
+print("\n*************************************")
+mail = input("mail adresinizi giriniz : ")
+sifre = input("şifrenizi giriniz : ")
+kayitlimailler = ["a@aaa.com","b@bbb.com","c@ccc.com"]
+kayitliSifreler = ["123","321","654321"]
+
+if mail ==kayitlimailler[0] and sifre ==kayitliSifreler[0]:
+    print("Tebrikler Giriş Başarılı. Allah öğrenme kolaylığı versin. Devam.. ")
+elif mail == kayitlimailler[1] and sifre == kayitliSifreler[1]:
+    print("Tebrikler Giriş Başarılı. Allah öğrenme kolaylığı versin. Devam.. ")
+ 
+elif mail ==kayitlimailler[2]  and sifre == kayitliSifreler[2]:
+    print("Tebrikler Giriş Başarılı. Allah öğrenme kolaylığı versin. Devam.. ")
+
+else:
+    print("Mail ya da şifrenizi hatalı girdiniz. Giriş bilgilerinizi unutmadıysanız gidip bi çay içip gelin ve Tekrar Deneyin!..")
+    
