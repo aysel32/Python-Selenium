@@ -1,0 +1,12 @@
+
+print("*****************Kodlama-io Sayfasındaki değişken tipleri***************")
+print("=> Kurs isimleri:  string bir değer \n- Kurs tamamlama yüzdelik bilgisi: integer değer \n- Eğitmen isimleri : Liste tipinde tanımlanmıştır ")
+print("\n**************string örneği*************")
+kursAdi = "Yazılım Geliştirici Yetiştirme Kampı (JavaScript)" #=>string değer verilmiştir
+print(kursAdi)
+print("\n****************integer örneği****************")
+ilerlemeYuzdesi = 80
+print(ilerlemeYuzdesi,"% \nTAMAMLANDI")
+print("\n****************liste örneği****************")
+egitmen = ["Engin Demiroğ","Halit Enes Kalaycı"]
+print(egitmen)
