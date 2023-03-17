@@ -1,0 +1,41 @@
+print("********Aldığı isim soyisim ile listeye öğrenci ekleme**********")
+
+ogrenciler = ["Yaşar Yaş","Deniz Den","Tansu Tan"]
+ogrenciler.append("Umut Mut")
+print(ogrenciler)
+
+print("\n********Aldığı isim soy isim ile eşleşen değeri listeden kaldıran**********")
+
+ogrenciler = ["Yaşar Yaş","Deniz Den","Tansu Tan","Umut Mut"]
+ogrenciler.append("Umut Mut")#eklenen aynı isim
+print(ogrenciler)
+
+ogrenciler.pop(4)
+print(ogrenciler)
+
+print("\n********Listeye birden fazla öğrenci eklemeyi mümkün kılan**********")
+
+ogrenciler = ["Yaşar Yaş","Deniz Den","Tansu Tan","Umut Mut"]
+ogrenciler.extend(["Keziban Sökmen","Serkan Sökmen","Aysun Özçelik"])
+print(ogrenciler)
+
+
+print("\n********Listedeki tüm öğrencileri tek tek ekrana yazdıran**********")
+ogrenciler = ['Yaşar Yaş', 'Deniz Den', 'Tansu Tan', 'Umut Mut', 'Keziban Sökmen', 'Serkan Sökmen', 'Aysun Özçelik']
+for yazdir in ogrenciler:
+    print(yazdir)
+    
+print("\n********Öğrencinin listedeki index numarası öğrenci numarası olarak kabul edildiğini düşünerek öğrencinin numarasını öğrenmeyi mümkün kılan**********")    
+ogrenciler = ['Yaşar Yaş', 'Deniz Den', 'Tansu Tan', 'Umut Mut', 'Keziban Sökmen', 'Serkan Sökmen', 'Aysun Özçelik']
+i=0
+while i< len(ogrenciler):
+    print(str(i)+" "  +"No'lu öğrenci"+" "+ogrenciler[i])
+    i+=1
+print(ogrenciler)   
+    
+    
+print("\n********Listeden birden fazla öğrenci silmeyi mümkün kılan (döngü kullanınız)**********")    
+ogrenciler = ['Yaşar Yaş', 'Deniz Den', 'Tansu Tan', 'Umut Mut', 'Keziban Sökmen', 'Serkan Sökmen', 'Aysun Özçelik']
+for i in range(len(ogrenciler)-1,-1,-1):
+    print(str(i)+" "+"No'lu kayıt"+" "+ogrenciler[i]+" "+"listeden silindi.")
+print(ogrenciler)      
