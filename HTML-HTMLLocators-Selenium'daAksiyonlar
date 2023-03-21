@@ -1,0 +1,57 @@
+HTML
+
+Nasıl ki müzik aletleri notalara göre ortaya bir müzik çıkarıyorsa, HTML de böyle arkadaşlar. Ne alaka demeyin. Müziği müzik yapan notalarıdır. Notalar müziğin alfabesidir. İşte HTML de web tasarımın notalarıdır, alfabesidir. Müziğin alfabesini müzik aleti okur, HTML in alfabesini tarayıcılar okur. 
+
+HTML tag larla çalışan bir dildir. Web sayfasında göstermek istediğimiz yazı, resim, video vb gibi içerikleri HTML in yapacağı işleve göre tanımlanmış tagları arasında yazarız. Mesela  sayfaya bir resim koymak istiyorum. bunun için <img></img> tagına, buton eklemek istiyorum <button></button> tagına ihtiyacım var. HTML yine kendi taglarını tanıyabilmesi için kod sayfamısın en başında ve sonunda <html> kök etiketi olmalıdır. Tüm HTML tagları bu kök etiket arasında yazılır. 
+
+
+
+
+HTML Locators (Konumlandırıcı)
+
+Selenium IDE’ye hangi web tabanlı objeler üzerinde çalışması gerektiğini söyleyen bir komuttur.
+Bir siteye girdiğimizde sağ tık incele diyerek istediğimiz objenin attribute lerini görürüz. Elementin bilgilerinden bize uygun olan locator için gerekli bilgileri alıp otomasyonunuzda bu elemente ulaşmak için kullanabiliriz.
+
+ 
+Selenium'da aksiyonlar
+- Geçerli tarayıcıda bir URL açmak için get () kullanarak komut verin.
+=> driver.get('https://www.softwaretestinghelp.com')
+
+***************************************************************************
+
+-URL'nin doğru olup olmadığını kontrol etmek için getCurrentUrl () kullanarak komut verin.
+=> driver.getCurrentUrl()
+
+**********************************************************************************
+-findElement (Yazar, ölçüt) ve web sayfasının herhangi bir öğesine tıklamak için () öğesine tıklayın.
+
+FindElement (By, by) yöntemi, geçerli sayfadaki parametre olarak verilen kriterlerle eşleşen ilk öğeyi arar ve bulur. Bu yöntem genellikle tıklama, gönder, tür vb. Gibi kullanıcı eylemlerini simüle etmek için komutlarda kullanılır.
+
+=> driver.findElement(By.id('submit1')).click()
+
+***********************************************************************************
+
+-Selenium WebDriver'da Öğenin Etkin veya Devre Dışı Bırakıldığını Kontrol Etmek için isEnabled ().
+ 
+=>boolean textBox = driver.findElement(By.xpath('//input[@name='textbox1']')).isEnabled()
+
+**********************************************************************************
+
+-Otomasyon testinde sıklıkla gerekli olan farklı kullanıcı girdilerini girerek form doğrulama kontrolleri. Alanları bulmak için findElement (By, by) ve düzenlenebilir bir alana bazı içerikler yazmak için sendKeys () kullanırız.
+
+=>driver.findElement(By.name('name')).sendkeys('Aaron')
+
+***********************************************************************************
+
+
+-Hedeflenen web öğesinin değerini saklamak için getText () ile findElement (By, by).
+ tagName 'select' e sahip Öğeyi bulur ve etiketin içindeki metni alır ve bir değişken açılır menüsünde depolar. Artık String dropDown, programın içindeki diğer eylemler için kullanılabilir.
+=>String dropDown = driver.findElement(By.tagName('dropdown1')).getText()
+
+***********************************************************************************
+
+-Submit (), düğmeyi ve ad veya e-posta adresi gibi başka herhangi bir alana eklenebilecek yöntemi otomatik olarak bularak hayatı kolaylaştırır. Tıklama durumunda, findElement (By, by) yöntemini kullanmalı ve doğru konumlandırıcıları belirtmeliyiz.
+
+Eylemin düğme dışındaki öğeler aracılığıyla yapıldığı bazı senaryolarda, submit () çalışır ve tıklama () çalışmaz.
+
+=>driver.findElement(By.xpath('//input[@name='comments']')).submit()
