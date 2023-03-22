@@ -1,0 +1,130 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from time import sleep
+from selenium.webdriver.common.by import By
+
+class Test_Caseses:
+    def user_name_control(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")               
+        sleep(2) 
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password")            
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        sleep(2)       
+        errorMessage = driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+        testReguired = errorMessage.text == "Epic sadface: Username is required"
+        print("\n************Kul-Adı ve Şifre Boş Geçilemez Uyarı Kontrol**************") 
+        print(f"TEST SONUCU: {testReguired}")  
+
+        
+
+
+    
+    def test_passwordRequired(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")               
+        sleep(2) 
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password")  
+        usernameInput.send_keys("standard_user")
+        sleep(2)
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        test_username_pass_control = driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+        test_username = test_username_pass_control.text == "Epic sadface: Username is required"
+        print(f"TEST SONUCU: {test_username}")
+        sleep(5)                
+        passwordRequired = driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3") 
+        test_password = passwordRequired.text == "Epic sadface: Password is required"
+        print("\n************Şifre Boş Geçilemez Uyarı Kontrol****************")
+        print(f"TEST SONUCU: {test_password}")
+        usernameInput.clear()
+        sleep(2)
+        
+    def test_user_locked(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")               
+        sleep(2) 
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password") 
+        sleep(2)
+        usernameInput.send_keys("locked_out_user")
+        passwordInput.send_keys("secret_sauce")
+        sleep(2)
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        errorMessage = driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+        test_Locked = errorMessage.text == "Epic sadface: Sorry, this user has been locked out."
+        print("\n************Kullanıcı Kilitlendi Mesajı****************")
+        print(f"TEST SONUCU: {test_Locked}")
+        sleep(5)
+        
+    def x_icon_control(self):       
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")
+        sleep(2) 
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password")            
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        sleep(2)
+        show_x = driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3/button")
+        sleep(2)
+        show_x.click()
+        sleep(2)
+        print("\n************X iconu gösterilir kapatılır****************")
+        print("Uyarı iconlarını kapatıp alanları doldurun. Tekrar giriş yapmayı deneyin...")
+        
+        
+    def inventory_html(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")
+        sleep(2)
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password") 
+        sleep(2)
+        usernameInput.send_keys("standard_user")
+        passwordInput.send_keys("secret_sauce")
+        sleep(2)
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        sleep(2)
+        print("\n************inventory_html sayfasına yönlendirme****************")
+        print("İnventory sayfasına hoşgeldiniz")
+
+    def products(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://www.saucedemo.com/")
+        sleep(2)
+        usernameInput = driver.find_element(By.ID, "user-name")
+        passwordInput = driver.find_element(By.ID,"password") 
+        sleep(2)
+        usernameInput.send_keys("standard_user")
+        passwordInput.send_keys("secret_sauce")
+        sleep(2)
+        loginBtn = driver.find_element(By.ID,"login-button")
+        loginBtn.click()
+        sleep(2)        
+        list_product =driver.find_elements(By.CLASS_NAME,"inventory_item")
+        print(f"Swag Labs sayfasında {len(list_product)} adet ürün vardır")
+        sleep(2)
+        print("\n4.Günün Ödevleride alnımın akıyla yapılmıştır. Kendimi TEBRİK EDİYORUM.~@ ")
+        
+        
+            
+
+testClass = Test_Caseses()        
+testClass.user_name_control() 
+testClass.test_passwordRequired()
+testClass.test_user_locked() 
+testClass.x_icon_control()
+testClass.inventory_html()
+testClass.products()
