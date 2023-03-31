@@ -1,0 +1,163 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager 
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.action_chains import ActionChains
+import pytest
+from pathlib import Path
+from datetime import date
+
+
+
+class Test_Caseses:  
+
+        def setup_method(self):           
+            self.driver = webdriver.Chrome(ChromeDriverManager().install())
+            self.driver.maximize_window()
+            self.driver.get("https://www.saucedemo.com/")
+            self.folderPath = str(date.today())
+            Path(self.folderPath).mkdir(exist_ok=True)
+            
+        def teardown_method(self):
+            self.driver.quit()   
+            
+        def waitForElementVisible(self,locator,timeout=5):
+            WebDriverWait(self.driver,timeout).until(ec.visibility_of_element_located(locator))
+        
+                
+        #Kullanıcı adı ve şifre alanları boş geçildiğinde uyarı mesajı testi
+        
+        @pytest.mark.parametrize("username,password",[("", "")])
+        def test_user_name_password_control(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()  
+
+            errorMessage = self.driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+            self.driver.save_screenshot(f"{self.folderPath}/test-user-name-password-control{username}-{password}.png")
+            assert errorMessage.text == "Epic sadface: Username is required" 
+            
+            
+            #şifre alanı boş geçildiğinde hata mesajı testi
+        @pytest.mark.parametrize("username,password",[("standard_user", "")])
+        def test_passwordRequired(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()       
+            
+            errorMessage = self.driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+            self.driver.save_screenshot(f"{self.folderPath}/test-passwordRequired{username}-{password}.png")
+            assert errorMessage.text =="Epic sadface: Password is required"
+            
+            
+            
+        @pytest.mark.parametrize("username,password",[("locked_out_user", "secret_sauce")])    
+        def test_user_locked(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()    
+            
+            errorMessage = self.driver.find_element(By.XPATH,"/html/body/div/div/div[2]/div[1]/div/div/form/div[3]/h3")
+            self.driver.save_screenshot(f"{self.folderPath}/test-user-locked{username}-{password}.png")
+            assert errorMessage.text == "Epic sadface: Sorry, this user has been locked out."
+            
+            #Alanlar boş geçildiğinde çıkan kırmızı ikon testi
+        @pytest.mark.parametrize("username,password",[("", "")]) 
+        def test_x_icon_control(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()  
+            
+            show_x = self.driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3/button")
+            self.driver.save_screenshot(f"{self.folderPath}/test-x-icon-control{username}-{password}.png")
+            show_x.click()
+            
+        @pytest.mark.parametrize("username,password",[("standard_user", "secret_sauce")]) 
+        def test_inventory_html(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()      
+            
+            list_product = self.driver.find_elements(By.CLASS_NAME,"inventory_item")
+            self.driver.save_screenshot(f"{self.folderPath}/test-inventory-html{username}-{password}.png")
+            assert len(list_product) == 6
+            
+            
+         # parametrize fonksiyonu ile en az 3 farklı veri testi 
+        @pytest.mark.parametrize("username,password",[("kuladini_unuttum", "sifrem_neydi"),("Aysel", "secret_sauce"),("performance_glitch_user", "secret_sauce")])    
+        def test_tree_data_attempt(self,username,password):
+            self.waitForElementVisible((By.ID,"user-name"))
+            usernameInput = self.driver.find_element(By.ID, "user-name")
+        
+            self.waitForElementVisible((By.ID,"password"))
+            passwordInput =self.driver.find_element(By.ID,"password") 
+        
+            actions = ActionChains(self.driver) 
+            actions.send_keys_to_element(usernameInput,username)   
+            actions.send_keys_to_element(passwordInput,password)
+            actions.perform()
+        
+            self.waitForElementVisible((By.ID,"login-button"))
+            loginBtn = self.driver.find_element(By.ID,"login-button")
+            loginBtn.click()    
+
+            self.driver.save_screenshot(f"{self.folderPath}/test-tree-data-attempt{username}-{password}.png")
+            
+            
