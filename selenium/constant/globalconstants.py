@@ -1,0 +1,8 @@
+URL = "https://www.saucedemo.com/"
+username = "user-name"
+password = "password"
+loginBtn = "login-button"
+locked_mess = "Epic sadface: Sorry, this user has been locked out."
+required_user_mess = "Epic sadface: Username is required"
+required_passw_mess = "Epic sadface: Password is required"
+user_passw_mess = "Epic sadface: Username and password do not match any user in this service"
