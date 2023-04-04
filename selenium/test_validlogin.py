@@ -32,7 +32,7 @@ class TestValidlogin():
     passwordInput = self.driver.find_element(By.ID, gc.password)
     passwordInput.click() 
     WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located((By.ID, gc.password)))
-    passwordInput.send_keys("Ölçer")
+    passwordInput.send_keys("secret_sauce")
     
     loginButton = self.driver.find_element(By.ID,gc.loginBtn)
     loginButton.click()
